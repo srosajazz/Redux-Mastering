@@ -1,7 +1,11 @@
 import { createStore } from "redux";
 
 //Reducer
-const INITIAL_STATE = ["Play Piano", "Learn Harmony"];
+const INITIAL_STATE = [
+  { id: 1, text: "Make Coffe", complete: false },
+  { id: 2, text: "Learn Harmony", complete: true },
+  { id: 3, text: "Learn Code", complete: false }
+];
 
 //Actions
 
@@ -12,10 +16,17 @@ const INITIAL_STATE = ["Play Piano", "Learn Harmony"];
 // { type: 'MARK_AS_COMPLETED', id: 4 }
 
 function reducer(state = INITIAL_STATE, action) {
-  if (action.type === "ADD_TODO") {
-    return [...state, action.text];
+  switch (action.type) {
+    case "ADD_TODO":
+      return [
+        ...state,
+        { id: Math.random(), text: action.text, completed: false }
+      ];
+    case "MARK_AS_COMPLETED":
+      return state;
+    default:
+      return state;
   }
-  return state;
 }
 
 const store = createStore(reducer);
