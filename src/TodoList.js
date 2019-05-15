@@ -8,7 +8,8 @@ const TodoList = ({ todos, dispatch }) => (
   <View style={{ flex: 1, backgroundColor: "#FFF", justifyContent: "center" }}>
     {todos.map(todo => (
       <Text
-        style={{ ftextDecorationLine: todo.complete ? "line-through" : "none" }}
+        onPress={() => dispatch({ type: "MARK_AS_COMPLETED", id: todo.id })}
+        style={{ textDecorationLine: todo.complete ? "line-through" : "none" }}
         key={todo.id}
       >
         {todo.text}
